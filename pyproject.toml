@@ -116,6 +116,10 @@ exclude = [
   "test_.*\\.py$",
   "conftest\\.py$",
   "^tmp/",
+  # Заготовка задачи семинара 2 сломана НАМЕРЕННО: студент чинит то, что
+  # нашёл mypy. Общий `make typecheck` её не проверяет, иначе он всегда
+  # красный. Проверяет её верификатор задачи.
+  "seminars/02-typing/task/gradebook\\.py$",
 ]
 
 # nbformat/nbclient без py.typed — их функции для mypy "untyped", а strict
@@ -130,3 +134,11 @@ follow_imports = "skip"
 # они требуют установленного пакета задачи и гоняются в её собственном venv.
 testpaths = ["tests"]
 pythonpath = ["tools", "seminars/01-packaging/task"]
+
+# gradebook — намеренно сломанная заготовка задачи семинара 2. Верификатор
+# её импортирует, и mypy тянет ошибки заготовки в отчёт по верификатору.
+# follow_imports=skip делает модуль Any: проверяем верификатор, не заготовку.
+[[tool.mypy.overrides]]
+module = ["gradebook"]
+ignore_missing_imports = true
+follow_imports = "skip"
