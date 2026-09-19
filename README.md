@@ -12,6 +12,7 @@
 | № | Тема | Материалы |
 |---|---|---|
 | 1 | Packaging: от файла на диске до `pip install` | [`seminars/01-packaging/`](seminars/01-packaging/) |
+| 2 | Типы: что находит mypy и чего не видят тесты | [`seminars/02-typing/`](seminars/02-typing/) |
 
 ## Установка
 
@@ -54,6 +55,8 @@ make typecheck   mypy --strict
 make test        pytest
 make nb-run      прогнать все ноутбуки целиком (проверка, что не сгнили)
 make nb-clean    снять outputs с ноутбуков перед коммитом
+make check-pub   семинар 1: проверить публикацию студента
+make check-typing  семинар 2: проверить починку gradebook.py
 ```
 
 ## Как устроены материалы

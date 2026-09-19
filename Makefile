@@ -4,7 +4,7 @@
 #   curl -LsSf https://astral.sh/uv/install.sh | sh (Linux/WSL)
 
 .DEFAULT_GOAL := help
-.PHONY: help sync lint fmt typecheck test nb nb-clean nb-run check-pub
+.PHONY: help sync lint fmt typecheck test nb nb-clean nb-run check-pub check-typing
 
 help:  ## показать этот список
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
@@ -36,5 +36,8 @@ nb-run:  ## прогнать все ноутбуки целиком (прове�
 nb-clean:  ## снять outputs со всех ноутбуков перед коммитом
 	uv run python tools/nb.py clean seminars
 
-check-pub:  ## проверить публикацию студента: make check-pub USERNAME=ivanov
+check-pub:  ## семинар 1: проверить публикацию: make check-pub USERNAME=ivanov
 	uv run python seminars/01-packaging/task/check_publication.py --username $(USERNAME)
+
+check-typing:  ## семинар 2: проверить починку gradebook.py
+	uv run python seminars/02-typing/task/check_typing.py
